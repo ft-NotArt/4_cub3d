@@ -57,8 +57,8 @@ OBJ				=	$(addprefix src/, $(addsuffix .o, $(FILES)))
 
 all				:	fullscreen
 
-fullscreen		:	CFLAGS += -D SCREENWIDTH=$$(xrandr --current | grep '*' | uniq | awk '{print $$1}' | cut -d 'x' -f1)
-fullscreen		:	CFLAGS += -D SCREENHEIGHT=$$(xrandr --current | grep '*' | uniq | awk '{print $$1}' | cut -d 'x' -f2)
+fullscreen		:	CFLAGS += -D SCREENWIDTH=$$(xrandr --current | grep '*' | head -n1 | awk '{print $$1}' | cut -d 'x' -f1)
+fullscreen		:	CFLAGS += -D SCREENHEIGHT=$$(xrandr --current | grep '*' | head -n1 | awk '{print $$1}' | cut -d 'x' -f2)
 fullscreen		:	$(NAME)
 
 midres			:	CFLAGS += -D SCREENWIDTH=1280
