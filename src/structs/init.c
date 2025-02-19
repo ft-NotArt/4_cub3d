@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 22:25:53 by anoteris          #+#    #+#             */
-/*   Updated: 2025/02/09 20:00:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:03:12 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_cub3d	*cub3d_init(t_parsing *pars)
 	cub3d->map_width = pars->map_width ;
 	cub3d->map_height = pars->map_height ;
 	cub3d->raycast = raycast_init(pars);
-	cub3d_init_mlx_part(cub3d, pars, txtrs, anim);
+	(cub3d_init_mlx_part(cub3d, pars, txtrs, anim), cub3d->last_frame_time = 0);
 	cub3d->frame = -1 ;
 	cub3d->minimap = minimap_init(cub3d);
 	return (cub3d);

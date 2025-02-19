@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 04:39:22 by anoteris          #+#    #+#             */
-/*   Updated: 2025/02/09 03:12:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:01:58 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,20 @@ void	frame_loop(void *param)
 	int32_t	y ;
 
 	cub3d = (t_cub3d *) param ;
-	mlx_get_mouse_pos(cub3d->mlx, &x, &y);
-	mlx_set_mouse_pos(cub3d->mlx, (SCREENWIDTH / 2), (SCREENHEIGHT / 2));
 	if (cub3d->frame >= 0)
 		frame_handler(cub3d);
 	key_handler(cub3d);
+	mlx_get_mouse_pos(cub3d->mlx, &x, &y);
 	if (x - (SCREENWIDTH / 2))
+	{
+		mlx_set_mouse_pos(cub3d->mlx, (SCREENWIDTH / 2), (SCREENHEIGHT / 2));
 		rotate(cub3d, -ROT_SPEED * (x - (SCREENWIDTH / 2)) * 0.03);
-	raycasting(cub3d);
+	}
+	if ((mlx_get_time() - cub3d->last_frame_time) > (1.0 / 60.0))
+	{
+		raycasting(cub3d);
+		cub3d->last_frame_time = mlx_get_time();
+	}
 }
 
 void	keyboard_hook(mlx_key_data_t keydata, void *param)

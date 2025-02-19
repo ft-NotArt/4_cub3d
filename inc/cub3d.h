@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:40:26 by anoteris          #+#    #+#             */
-/*   Updated: 2025/02/09 20:02:44 by anoteris         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:54:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,6 @@ typedef struct s_raycasting
 	bool			door;
 }	t_raycast;
 
-typedef struct s_cub3d
-{
-	char				**map;
-	int					map_height;
-	int					map_width;
-	mlx_t				*mlx;
-	mlx_image_t			*screen;
-	mlx_image_t			**txtrs;
-	mlx_image_t			**frames;
-	int					frame;
-	struct s_raycasting	*raycast;
-	struct s_minimap	*minimap;
-}	t_cub3d;
-
 typedef struct s_minimap
 {
 	mlx_image_t	*img;
@@ -142,6 +128,21 @@ typedef struct s_minimap
 	int			dist_x;
 	int			dist_y;
 }	t_minimap;
+
+typedef struct s_cub3d
+{
+	char				**map;
+	int					map_height;
+	int					map_width;
+	mlx_t				*mlx;
+	mlx_image_t			*screen;
+	mlx_image_t			**txtrs;
+	mlx_image_t			**frames;
+	int					frame;
+	struct s_raycasting	*raycast;
+	double				last_frame_time ;
+	struct s_minimap	*minimap;
+}	t_cub3d;
 
 /*** FUNCTIONS ***/
 
